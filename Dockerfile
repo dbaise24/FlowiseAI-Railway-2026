@@ -1,5 +1,5 @@
 # Stage 1: Build stage
-FROM node:20-alpine as build
+FROM node:22-alpine AS build
 
 USER root
 
@@ -10,10 +10,10 @@ ENV PUPPETEER_SKIP_DOWNLOAD=true
 RUN apk add --no-cache python3 make g++ build-base cairo-dev pango-dev
 
 # Install latest Flowise globally (specific version can be set: flowise@1.0.0)
-RUN npm install -g flowise@2.2.7-patch.1
+RUN npm install -g flowise@3.1.4
 
 # Stage 2: Runtime stage
-FROM node:20-alpine
+FROM node:22-alpine
 
 # Install runtime dependencies
 RUN apk add --no-cache chromium git python3 py3-pip make g++ build-base cairo-dev pango-dev
